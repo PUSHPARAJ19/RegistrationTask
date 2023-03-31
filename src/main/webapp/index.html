@@ -1,9 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-     <%@page import="java.util.*" %>
-<%@page import="java.io.*" %>
-<%@page import="com.DAO.RegisterDAO" %>
-<%@page import="com.Modal.User" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,22 +18,6 @@ section
 </style>
 </head>
 <body>
-<%
-   //HttpSession ses = request.getSession(false);
-    User user = new User();
-    //System.out.println(new Date()+" "+ session.isNew());
-    String action="";
-  if(request.getParameter("userId")==null)
-  {
-	 user = new User("","","","",0);  
-	 action="addUser";
-  }
-  else
-  {
-	  action="edit";
-	  user = RegisterDAO.selectUser(request.getParameter("userId"));
-  }
-  %>
 <section class="vh-100">
   <div class="mask d-flex align-items-center gradient-custom-3">
     <div class="container h-100">
@@ -50,39 +28,30 @@ section
               <h2 class="text-uppercase text-center">REGISTER</h2>
 
               <form name="registerForm" action="RegisterServlet">
-               <input type="hidden" id="formName" name="action" value=<%=action %>>
-               <%if(action.equals("edit")){ %>
-                 <div class="form-outline mb-2" d="userId">
-                  <label class="form-label" for="userId">User ID</label>
-                  <input type="text"   class="form-control form-control-lg" value="<%=user.getUserId() %>"  disabled/>
-                  <input type="hidden"  name="userId" class="form-control form-control-lg" value="<%=user.getUserId() %>" />
-                   
-                </div>
-                <% } %>
-                 
+               <input type="hidden" id="formName" name="action" value="addUser" >
                 <div class="form-outline mb-2">
                   <label class="form-label" for="fname">First Name</label>
-                  <input type="text" id="fname" name="fname" class="form-control form-control-lg" value="<%=user.getFname() %>" required/>
+                  <input type="text" id="fname" name="fname" class="form-control form-control-lg" required/>
                 </div>
                
                 <div class="form-outline mb-2">
                   <label class="form-label" for="lname">Last Name</label>
-                  <input type="text" id="lname" name="lname" class="form-control form-control-lg" value="<%=user.getLname()%>"required />
+                  <input type="text" id="lname" name="lname" class="form-control form-control-lg" required />
                 </div>
 
                 <div class="form-outline mb-2">
                   <label class="form-label" for="email">Email</label>
-                  <input type="email" id="email" name="email" class="form-control form-control-lg" value="<%=user.getEmail()%>" required/>
+                  <input type="email" id="email" name="email" class="form-control form-control-lg" required/>
                 </div>
                
                 <div class="form-outline mb-2">
                   <label class="form-label" for="mobileNum">Mobile Number</label>
-                  <input type="text" id="mobileNum" name="mobileNum" class="form-control form-control-lg" value="<%=user.getMobileNum() %>" required/>
+                  <input type="text" id="mobileNum" name="mobileNum" class="form-control form-control-lg" required/>
                 </div>
                
                 <div class="form-outline mb-2">
                   <label class="form-label" for="age">Age</label>
-                  <input type="text" id="age" name="age" class="form-control form-control-lg" value="<%=user.getAge()%>"required/>
+                  <input type="text" id="age" name="age" class="form-control form-control-lg" required/>
                 </div>
 
 

@@ -24,7 +24,8 @@ public class RegisterServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
 		String action = request.getParameter("action");
-		if(action.equals("addUser")) {
+		if(action.equals("addUser")) 
+		{
 		User user = new User(request.getParameter("fname"),request.getParameter("lname"),request.getParameter("email"),request.getParameter("mobileNum"), Integer.parseInt(request.getParameter("age")));
 		try {
 			if(RegisterDAO.addUser(user))

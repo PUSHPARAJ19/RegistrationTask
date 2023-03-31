@@ -16,13 +16,13 @@
 </head>
 <body>
  <div class="container">
-   <div class="row py-4">
+   <div class="row py-3">
      <div class="col-sm-10">
        <h2 class="text-center">USER DETAILS</h2>
       </div>
       <div class="col-sm-2">
           <div class="d-flex flex-row-reverse bd-highlight">
-          <a href="index.jsp">
+          <a href="index.html">
            <button type="button" class="btn btn-info" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
   <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
   <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
@@ -66,16 +66,14 @@
                <tr id="<%=user.getUserId() %>" style="inline;">
             <th scope="row"><%=serial%></th>
             <td><%=user.getUserId()%></td>
-            <td><%=user.getFname() %></td>
-            <td><%=user.getLname() %></td>
-            <td><%=user.getEmail() %></td>
-            <td><%=user.getMobileNum() %></td>
-            <td><%=user.getAge() %></td>
+            <td ><%=user.getFname() %></td>
+            <td ><%=user.getLname() %></td>
+            <td ><%=user.getEmail() %></td>
+            <td ><%=user.getMobileNum() %></td>
+            <td ><%=user.getAge() %></td>
             <td>
-            <button type="button" class="btn btn-warning" onclick="editInfo(<%=user.getUserId()%>)"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-</svg> EDIT</button>
+            <button type="button" 
+            class="btn btn-warning" onclick="editInfo()">  EDIT</button>
              <button type="button" class="btn btn-danger" onclick="deleteUser(<%=user.getUserId()%>)"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
   <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
 </svg> REMOVE</button>
@@ -87,12 +85,54 @@
         </tbody>
       </table>
       
-      <!--  script function to open modal -->
+      <!--  script function edit and dlete -->
        
       <script>
-       function editInfo(user)
+      function changeColor(child,color1,color2)
+      {
+    	  for(let i=2;i<child.length-1;i++)
+		   { 
+		   child[i].style.backgroundColor =color1;
+		   child[i].style.color=color2;
+		   }
+      }
+      
+       function editInfo()
        {
-    	   location.assign("index.jsp?userId="+user);
+    	   let row = event.target.closest("tr");
+    	   const child = row.children;
+    	   child[1].contentEditable=false;
+    	   let editBtn = child[7].children;
+		   let btnCont = editBtn[0].innerHTML;
+    	   //console.log(btnCont=='SAVE');
+    	   if(!row.isContentEditable)
+    	   {
+    	   row.contentEditable = true; 
+    		   changeColor(child,"grey","white");
+    		   editBtn[0].innerHTML = 'UPDATE';
+    	    }
+    	   else{
+    		   let user = child[1].innerHTML;
+    		   let fname = child[2].innerHTML;
+    		   let lname = child[3].innerHTML;
+    		   let email =child[4].innerHTML;
+    		   let mobileNum = child[5].innerHTML;
+    		   let age = child[6].innerHTML;
+    		   let url = "RegisterServlet?action=edit&userId="+user+"&fname="+fname+"&lname="+lname+"&email="+email+"&mobileNum="+mobileNum+"&age="+age;
+    		   //console.log(url);
+    		      let xhttp = new XMLHttpRequest();
+    	    	  xhttp.open("POST",url,true);
+    	   	        xhttp.send();
+    	    	   xhttp.onreadystatechange = function()
+    	    	   {
+    	    		   if(this.readyState==4 && this.status==200)
+    	    			{
+    	    			    changeColor(child,"white","black");
+    	    			    row.contentEditable = false;
+    	    			    editBtn[0].innerHTML = "EDIT";
+    	    			}   
+    	    	   }
+    	   }
        }
        
        
@@ -114,11 +154,8 @@
     	      
     	   
        }
-       
-      </script>
-      
+      </script>   
       <!--  closing for parent property -->
-      <p id="demo"></p>
      </div>
    </div>
  </div>
