@@ -98,7 +98,6 @@ public class RegisterDAO {
 	 }
 	 public static LinkedList<User> selectUsers() throws SQLException
 	 {
-		// DBUtil db = new DBUtil();
 		 LinkedList<User> users = new LinkedList<>();
 		 Connection con = DBUtil.getConnection();
 		 PreparedStatement ps = con.prepareStatement("Select UserId,fname,lname,email,mobileNum,age FROM user");
@@ -106,25 +105,9 @@ public class RegisterDAO {
 		 while(rs.next())
 		 {
 			 User user = new User(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(6));
-//			 user.setUserId(rs.getInt(1));
-//			 user.setFname(rs.getString(2));
-//			 user.setLname(rs.getString(3));
-//			 user.setEmail(rs.getString(4));
-//			 user.setMobileNum(rs.getString(5));
-//			 user.setAge(rs.getInt(6));
 			 users.add(user);
 		 }
 		 return users;
 	 }
- //public static void main(String[] args) throws SQLException {
-//	 User user1 = new User(102,"Bindhu","Shaar","bindhuil.com","6789346761",7);
-//	 RegisterDAO.addUser(user1);
-//	 LinkedList<User> user = RegisterDAO.selectUsers();
-//	 int l = user.size();
-//	 while(l>0)
-//	 {
-//		 System.out.println( (User)user.get(l-1));
-//		 l--;
-//	 }
-//}
+
 }

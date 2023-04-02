@@ -1,4 +1,6 @@
 
+
+
 const btn = document.getElementById("registerBtn");
  btn.addEventListener("mouseover", function()
 {
@@ -14,8 +16,9 @@ const btn = document.getElementById("registerBtn");
 	    }
 	    else
 	    {
-		if(fname.length<=2)
+		if(fname.length<=2){
 		 alert("First Name should be Valid!");
+		 }
 		let pattern = /\D/g;
 		let isValidNum = mobileNum.match(pattern);
 		if(isValidNum===null)
@@ -35,11 +38,6 @@ const btn = document.getElementById("registerBtn");
 	     	else if(age>=40)
 	     	{
 		    alert("Age must be less than 40!");
-	         }
-	     	
-		    
-		    
+	         }    
 	    }
-	    
-	
 });
